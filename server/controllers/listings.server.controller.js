@@ -76,7 +76,7 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
   var listing = req.listing;
 
-  //We only need to use remove here
+  //We only need to use remove here  //
   Listing.findOneAndRemove({name: listing.name}, {code: listing.code}, function(err){
     if(err)
     {
