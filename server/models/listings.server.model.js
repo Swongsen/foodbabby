@@ -21,7 +21,24 @@ var listingSchema = new Schema({
   evDate: Date,
   evFood: String,
   evBldRm: String,
-  evDirections: String
+  evDirections: String,
+  evUpdatedAt: Data
+});
+
+var accountSchema = new Schema({
+  Name: {
+    type: String,
+    required: true
+  },
+  Password:{
+    type: String,
+    required: true
+  },
+  Type:{
+    type: boolean,
+    required: true
+  }
+  
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
@@ -37,6 +54,8 @@ listingSchema.pre('save', function(next) {
 
 /* Use your schema to instantiate a Mongoose model */
 var Listing = mongoose.model('Listing', listingSchema);
+var Accounts = mongoose.model('Accounts', accountSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = Listing;
+module.exports = Accounts;
