@@ -21,8 +21,8 @@ var listingSchema = new Schema({
   evDate: Date,
   evFood: String,
   evBldRm: String,
-  evDirections: String,
-  evUpdatedAt: Data
+  evDescription: String,
+  evUpdatedAt: Date
 });
 
 var accountSchema = new Schema({
@@ -35,7 +35,7 @@ var accountSchema = new Schema({
     required: true
   },
   Type:{
-    type: boolean,
+    type: Boolean,
     required: true
   }
   
