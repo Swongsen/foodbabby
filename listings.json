@@ -1,0 +1,42 @@
+{
+    "entries": 
+    [
+        {
+            "evName": "Dogs and Donuts", 
+            "evHost": "Dunkin Donuts",
+            "evCoordinates": {
+                "latitude": 29.6502323, 
+                "longitude": -82.34563860000002
+            }, 
+            "evAddress": "100 Fletcher Dr, Gainesville, FL 32611, United States",
+            "evLocation" : "Reitz Lawn", 
+            "evDate": "2014-01-01T23:28:56.782Z",
+            "evFood": "Donuts"
+        }, 
+        {
+            
+            "evName": "Taco Tuesday", 
+            "evHost": "Tiajuana Flats",
+            "evCoordinates": {
+                "latitude": 29.6502323, 
+                "longitude": -82.34563860000002
+            }, 
+            "evAddress": "101 Fletcher Dr, Gainesville, FL 32611, United States",
+            "evLocation" : "Reitz Lawn2", 
+            "evDate": "2014-01-01T23:28:56.782Z",
+            "evFood": "Tacos"
+        }, 
+        {
+            "evName": "Burgers with bulldogs", 
+            "evHost": "Relish",
+            "evCoordinates": {
+                "latitude": 29.6502323, 
+                "longitude": -82.34563860000002
+            }, 
+            "evAddress": "102 Fletcher Dr, Gainesville, FL 32611, United States",
+            "evLocation" : "Reitz Lawn", 
+            "evDate": "2014-01-01T23:28:56.782Z",
+            "evFood": "Burgers"
+        }
+    ]
+}
