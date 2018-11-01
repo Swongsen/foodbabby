@@ -24,7 +24,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       },
       function(error)
       {
-        server.console.log('Addition Failed. Error: ', error);
+        console.log('Addition Failed. Error: ', error);
       }
     )};
 

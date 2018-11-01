@@ -13,7 +13,7 @@ var listingSchema = new Schema({
     required: true
   }, 
   evLocation: String, 
-    coordinates: {
+  coordinates: {
       latitude: Number, 
       longitude: Number
   },

@@ -104,6 +104,8 @@ exports.list = function(req, res) {
   })
 };
 
+// TODO mapInfo the same as list but with map stuff
+
 /* 
   Middleware: find a listing by its ID, then pass it to the next request handler. 
 

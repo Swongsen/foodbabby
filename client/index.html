@@ -32,9 +32,11 @@
           </div>
           <form novalidate class="simple-form">
             <h2>Add New Event</h2>
-            Host: <input type="text" ng-model="newListing.code" /><br />
-            Event Name: <input type="text" ng-model="newListing.name" /><br />
-            Address: <input type="text" ng-model="newListing.address" /><br />
+            Host: <input type="text" ng-model="newListing.evHost" /><br />
+            Event Name: <input type="text" ng-model="newListing.evName" /><br />
+            Address: <input type="text" ng-model="newListing.evAddress" /><br />
+            Lat: <input type="number" ng-model="newListing.coordinates.latitude" /><br />
+            Lng: <input type="number" ng-model="newListing.coordinates.longitude" /><br />
             <button class="btn btn-primary" ng-click="addListing()">Add Event</button>
           </form>
         </div>

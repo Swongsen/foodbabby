@@ -4,7 +4,7 @@
 
 module.exports = {
     db: {
-      uri: 'mongodb://<dbuser>:<dbpassword>@ds227853.mlab.com:27853/food_test', 
+      uri: 'mongodb://mjnolan:dcavell1999@ds017736.mlab.com:17736/max-nolan-uf2018', 
       //place the URI of your mongo database here.
     }, 
     port: 8080
