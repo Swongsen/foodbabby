@@ -12,7 +12,7 @@ angular.module('listings', []).factory('Listings', function($http) {
       return $http.delete('http://localhost:8080/api/listings/' + id);
     },
 
-    // getFoodType: function(foodtype) {
+    // getByFoodType: function(foodtype) {
     //   return $http.get('http://localhost:8080/api/listings/mapview/' + foodtype);
     // }
   };
