@@ -1,28 +1,22 @@
 {
-  "name": "Assignment4",
+  "name": "cen3031_foodbaby",
   "version": "1.0.0",
-  "description": "Routing server-side requests using ExpressJS",
+  "description": "Login",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app"
   },
   "dependencies": {
-    "body-parser": "^1.14.1",
-    "express": "^4.16.3",
-    "mongoose": "^4.2.9",
-    "morgan": "^1.6.1",
-    "request": "^2.67.0",
+    "express": "*",
+    "mongoose": "*",
     "bcryptjs": "*",
     "cors": "*",
     "jsonwebtoken": "*",
+    "body-parser": "*",
     "passport": "*",
     "passport-jwt": "*"
   },
-  "devDependencies": {
-    "should": "^7.1.1",
-    "supertest": "^1.1.0"
-  },
-  "author": "Medhir Bhargava",
-  "license": "MIT"
+  "author": "Spencer W",
+  "license": "ISC"
 }
