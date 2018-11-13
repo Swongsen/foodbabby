@@ -1,5 +1,5 @@
-angular.module('listings').controller('ListingsController', ['$scope', 'Listings', 
-  function($scope, Listings) {
+angular.module('listings').controller('ListingsController', ['$scope', '$location', 'Listings', 
+  function($scope, $location, Listings) {
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
       $scope.listings = response.data;
@@ -40,6 +40,25 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       {
         console.log('Addition Failed. Error: ', error);
       })
+    };
+
+    $scope.addListingAndGoToMap = function() {
+      /**TODO 
+      *Save the article using the Listings factory. If the object is successfully 
+      saved redirect back to the list page. Otherwise, display the error
+     */
+        Listings.create($scope.newListing).then(function(response)
+        {
+          Listings.getAll().then(function(response) 
+          {
+            $scope.listings = response.data;
+            // $location.path( '/mapview.html' );
+          })
+        },
+        function(error)
+        {
+          console.log('Addition Failed. Error: ', error);
+        })
     };
 
     $scope.deleteListing = function(index) {
