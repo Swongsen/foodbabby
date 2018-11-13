@@ -15,7 +15,7 @@ var listingSchema = new Schema({
   evLocation: String, 
   coordinates: {
       latitude: Number, 
-      longitude: Number
+      longitude: Number,
   },
   evAddress: String,
   evDate: Date,

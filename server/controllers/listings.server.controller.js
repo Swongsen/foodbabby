@@ -50,7 +50,7 @@ exports.update = function(req, res) {
   if(req.results)
   {
     listing.coordinates.latitude = req.results.lat;
-    listingscoordinates.longitude = req.results.lng;
+    listings.coordinates.longitude = req.results.lng;
   }
 
   //Use save to update our listing with the new data
@@ -116,12 +116,15 @@ exports.mapInfo = function(req, res) {
         return {
                     "type": "Feature",
                     "properties": {
-                        "description": "<strong>" + listing.evName + "</strong> " + listing.evDescription,
+                        "description": "<strong>Host:</strong> " + listing.evHost + "&#13;<strong>Name:</strong> " + listing.evName
+                          + "&#13;<strong>Description:</strong> " + listing.evDescription 
+                          + "&#13;<strong>Address:</strong> " + listing.evAddress 
+                          + "&#13;<strong>Food:</strong> " + listing.evFood,
                         "icon": "star",
                     },
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [listing.coordinates.latitude, listing.coordinates.longitude],
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
                     }
         }
       });
@@ -141,7 +144,7 @@ exports.getCoordinates = function(req, res) {
         return {
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [listing.coordinates.latitude, listing.coordinates.longitude],
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
                     }
         }
       });
