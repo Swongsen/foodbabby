@@ -116,10 +116,11 @@ exports.mapInfo = function(req, res) {
         return {
                     "type": "Feature",
                     "properties": {
-                        "description": "<strong>Host:</strong> " + listing.evHost + "&#13;<strong>Name:</strong> " + listing.evName
-                          + "&#13;<strong>Description:</strong> " + listing.evDescription 
-                          + "&#13;<strong>Address:</strong> " + listing.evAddress 
-                          + "&#13;<strong>Food:</strong> " + listing.evFood,
+                        "description": "<strong>Host:</strong> " + listing.evHost 
+                          + "<br><strong>Name:</strong> " + listing.evName
+                          + "</br><strong>Description:</strong> " + listing.evDescription 
+                          + "<br><strong>Address:</strong> " + listing.evAddress 
+                          + "</br><strong>Food:</strong> " + listing.evFood,
                         "icon": "star",
                     },
                     "geometry": {
@@ -170,7 +171,7 @@ exports.mapByFoodType = function(req, res) {
                     },
                     "geometry": {
                         "type": "Point",
-                        "coordinates": [listing.coordinates.latitude, listing.coordinates.longitude],
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
                     }
         }
       });
