@@ -116,7 +116,7 @@ exports.mapInfo = function(req, res) {
         return {
                     "type": "Feature",
                     "properties": {
-                        "description": listing.evName,
+                        "description": "<strong>" + listing.evName + "</strong> " + listing.evDescription,
                         "icon": "star",
                     },
                     "geometry": {
@@ -126,6 +126,26 @@ exports.mapInfo = function(req, res) {
         }
       });
       res.json(features);
+    }
+  });
+};
+
+exports.getCoordinates = function(req, res) {
+  Listing.find({})/*.sort({code: 1})*/.exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var coords = listings.map( function(listing) {
+        return {
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.latitude, listing.coordinates.longitude],
+                    }
+        }
+      });
+      res.json(coords);
     }
   });
 };
