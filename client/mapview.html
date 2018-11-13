@@ -23,6 +23,14 @@
         }
     </style>
     <div id='map' ng-controller="ListingsController">
+        <!--
+        <div class="col-md-6">
+                <div class="input-group" id="searchBar">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                    <input type="text" class="form-control" placeholder="Search" ng-model="query">
+                </div>
+                <button class="btn btn-primary" ng-click="filterByFoodTypeForMap()">Search</button>
+        </div> -->
     </div>
     <script>
       mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FoYXllczk3IiwiYSI6ImNqbmtxMnp6cjFjd2Iza216N2hheGQ2d3gifQ.OPg8xYxWdHMmKojW2ptbnQ';
@@ -36,7 +44,6 @@
       map.on('load', function () {
         // scope() gives the controller from map
         // how dynamic is this? find more angular-friendyl way to do
-        // TODO move creation of features array to a new endpoint (route)
         // Add a layer showing the places.
           map.addLayer({
               "id": "places",

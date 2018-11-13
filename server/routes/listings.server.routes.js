@@ -23,10 +23,8 @@ router.route('/:listingId')
   .put(listings.update)
   .delete(listings.delete);
 
-
-
-// router.route('/mapview/:foodtype')
-//   .get(/*something*/);
+router.route('/mapview/:foodtype')
+  .get(listings.mapByFoodType);
 
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle 

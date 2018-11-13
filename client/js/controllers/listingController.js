@@ -14,6 +14,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log('Unable to retrieve listings:', error);
     });
 
+    $scope.filterByFoodTypeForMap = function() {
+      Listings.getByFoodTypeForMap($scope.query).then(function(response) {
+        $scope.mapInfo = response.data;
+      }, function(error) {
+        console.log('Unable to retrieve listings by food type:', error);
+      });
+    };
+
     $scope.detailedInfo = undefined;
 
     $scope.addListing = function() {
@@ -31,8 +39,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       function(error)
       {
         console.log('Addition Failed. Error: ', error);
-      }
-    )};
+      })
+    };
 
     $scope.deleteListing = function(index) {
 	  

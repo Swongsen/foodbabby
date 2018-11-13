@@ -1,0 +1,57 @@
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-SemiBold;
+  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0px;
+  background:rgba(255, 255, 255, 0.089);
+}
+
+#view-cal, #all-events {
+  float: left;
+}
+
+#logout {
+  float: right;
+}
+
+li a {
+  
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  display: block;
+  color: #0d15e9;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background: #9152f8;
+  background: -webkit-linear-gradient(bottom, #0d15e9, #e66d1d);
+  background: -o-linear-gradient(bottom, #0d15e9, #e66d1d);
+  background: -moz-linear-gradient(bottom, #0d15e9, #e66d1d);
+  background: linear-gradient(bottom, #0d15e9, #e66d1d);
+}
+

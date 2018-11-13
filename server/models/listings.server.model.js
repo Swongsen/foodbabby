@@ -21,7 +21,8 @@ var listingSchema = new Schema({
   evDate: Date,
   evFood: String,
   evBldRm: String,
-  evDirections: String
+  evDirections: String,
+  evDescription: String,
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */

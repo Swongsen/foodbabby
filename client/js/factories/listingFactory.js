@@ -16,9 +16,9 @@ angular.module('listings', []).factory('Listings', function($http) {
       return $http.get('http://localhost:8080/api/listings/mapview');
     },
 
-    // getByFoodType: function(foodtype) {
-    //   return $http.get('http://localhost:8080/api/listings/mapview/' + foodtype);
-    // }
+    getByFoodTypeForMap: function(foodtype) {
+      return $http.get('http://localhost:8080/api/listings/mapview/' + foodtype);
+    }
   };
 
   return methods;
