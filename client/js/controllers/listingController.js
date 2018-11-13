@@ -52,7 +52,7 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
           Listings.getAll().then(function(response) 
           {
             $scope.listings = response.data;
-            // $location.path( '/mapview.html' );
+            $location.path( '/mapview.html' );
           })
         },
         function(error)
