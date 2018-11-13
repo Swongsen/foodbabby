@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>UF Food Baby - Create Account</title>
+	<title>UF Food Baby - Add Event</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -24,65 +24,70 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/toolbar-style.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/toolbar-style.css">
 <!--===============================================================================================-->
 </head>
 <body>
 
 <div class="limiter">
-		<div>
-				<ul id="navbar-id">
-					<li><a id="logout" href="index.html">Log Out</a></li>
-					<li><a id="view-cal" href="toolbar.html">View Events Map</a></li>
-					<li><a id="all-events" href="list-view.html">View All Events</a></li>
-				  </ul>
-				  </div>
+    <ul id="navbar-id">
+        <li><a id="logout" href="index.html">Log Out</a></li>
+        <li><a id="view-cal" href="toolbar.html">View Events Map</a></li>
+        <li><a id="all-events" href="list-view.html">View All Events</a></li>
+      </ul>
+      </div>
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form">
+				<form class="login100-form nonvalidate-form">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-local-dining"></i>
 					</span>
 					<span class="login100-form-title p-b-34 p-t-27">
-						Create An Account
+						Add an Event
 					</span>
-
-                    <div class="wrap-input100 " >
-                            <input class="input100" type="text" name="name" placeholder="Your Name">
+          <div class="latlong">Longitude and Latitude are required inputs to Add an Event. To find the latitude and longitude of your
+             Event please click here:  <a class="latlong-link" href = "https://www.latlong.net/convert-address-to-lat-long.html" target="_blank">
+              Convert your Address</a></div>
+         
+                    <div class="wrap-input100 ">
+                            <input class="input100" type="text" name="name" placeholder="Organization Name">
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
 
-					<div class="wrap-input100 ">
-						<input class="input100" type="text" name="username" placeholder="Username">
+					<div class="wrap-input100 " >
+						<input class="input100" type="text" name="event_name" placeholder="Event Name">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
                     
-                    <div class="wrap-input100 ">
-                            <input class="input100" type="email" name="email" placeholder="Email">
+                    <div class="wrap-input100 " >
+                            <input class="input100" type="text" name="food" placeholder="Food Provided">
                             <span class="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
 
-					<div class="wrap-input100 ">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					<div class="wrap-input100" >
+						<input class="input100" type="text" name="address" placeholder="Address">
+						<span class="focus-input100" data-placeholder="&#xf299;"></span>
                     </div>
                     
-                    <div class="wrap-input100 ">
-                            <input class="input100" type="password" name="pass" placeholder="Confirm Password">
-                            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    <div class="wrap-input100">
+                            <input class="input100" type="number" step="any" name="longitude" placeholder="Longitude of Event">
+                            <span class="focus-input100" data-placeholder="&#xf299;"></span>
                     </div>
 
-                    <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox100" for="ckb1">
-                                I am an event cooridinator for my organization
-                            </label>
-                        </div>
+                    <div class="wrap-input100">
+                      <input class="input100" type="number" step="any" name="latitude" placeholder="Latitude of Event">
+                      <span class="focus-input100" data-placeholder="&#xf299;"></span>
+                     </div>
+
+                     <div class="wrap-input100">
+                      <input class="input100" type="text" name="description" placeholder="Description of Event">
+                      <span class="focus-input100" data-placeholder="&#xf223;"></span>
+              </div>
                         
                     <div id="create-btn" class="container-login100-form-btn">
 							<button class="login100-form-btn">
-								Create My Account
+								Add Event
 							</button>
                         </div>
 
