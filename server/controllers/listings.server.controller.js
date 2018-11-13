@@ -104,6 +104,32 @@ exports.list = function(req, res) {
   })
 };
 
+exports.mapInfo = function(req, res) {
+  // same as exports.list above
+  Listing.find({}).sort({code: 1}).exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var features = listings.map( function(listing) {
+        return {
+                    "type": "Feature",
+                    "properties": {
+                        "description": listing.evName,
+                        "icon": "star",
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.latitude, listing.coordinates.longitude],
+                    }
+        }
+      });
+      res.json(features);
+    }
+  })
+}
+
 // TODO mapInfo the same as list but with map stuff
 
 /* 

@@ -8,6 +8,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log('Unable to retrieve listings:', error);
     });
 
+    Listings.getAllForMap().then(function(response) {
+      $scope.mapInfo = response.data;
+    }, function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
+
     $scope.detailedInfo = undefined;
 
     $scope.addListing = function() {

@@ -11,6 +11,9 @@ router.route('/')
   .get(listings.list)
   .post(listings.create);
 
+  // moved this up here so whatever sees this before /:listingId
+router.route('/mapview')
+  .get(listings.mapInfo);
 
 /*
   The ':' specifies a URL parameter. 
@@ -20,8 +23,7 @@ router.route('/:listingId')
   .put(listings.update)
   .delete(listings.delete);
 
-// router.route('/mapview')
-//   .get(listings.mapInfo);
+
 
 // router.route('/mapview/:foodtype')
 //   .get(/*something*/);

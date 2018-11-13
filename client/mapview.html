@@ -36,22 +36,7 @@
       map.on('load', function () {
         // scope() gives the controller from map
         // how dynamic is this? find more angular-friendyl way to do
-        var listings = angular.element(document.getElementById('map')).scope().listings;
         // TODO move creation of features array to a new endpoint (route)
-        var mapInfo = listings.map( function(listing) {
-            return {
-                        "type": "Feature",
-                        "properties": {
-                            "description": listing.evName,
-                            "icon": "star",
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [listing.coordinates.latitude, listing.coordinates.longitude],
-                        }
-                    }
-          }
-        );
         // Add a layer showing the places.
           map.addLayer({
               "id": "places",
@@ -60,7 +45,7 @@
                   "type": "geojson",
                   "data": {
                       "type": "FeatureCollection",
-                      "features": mapInfo,
+                      "features": angular.element(document.getElementById('map')).scope().mapInfo,
                   }	
               },
               "layout": {
