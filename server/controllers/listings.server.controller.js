@@ -77,7 +77,7 @@ exports.delete = function(req, res) {
   var listing = req.listing;
 
   //We only need to use remove here
-  Listing.findOneAndRemove({name: listing.name}, {code: listing.code}, function(err){
+  Listing.findOneAndRemove({name: listing.evName}, function(err){
     if(err)
     {
       res.status(400).send(err);
@@ -91,7 +91,6 @@ exports.delete = function(req, res) {
     });
 
 };
-
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
 
