@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>UF Food Baby - Add Event</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/fastfood.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/toolbar-style.css">
+<!--===============================================================================================-->
+</head>
+<body ng-app="directoryApp">
+
+<div class="limiter">
+    <ul id="navbar-id">
+        <li><a id="logout" href="index.html">Log Out</a></li>
+        <li><a id="view-cal" href="mapview.html">View Events Map</a></li>
+        <li><a id="all-events" href="list-view.html">View All Events</a></li>
+      </ul>
+      </div>
+                <div class="container-login100" style="background-image: url('images/bg-01.jpg');" ng-controller="ListingsController">
+			<div class="wrap-login100">
+				<form class="login100-form nonvalidate-form">
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-local-dining"></i>
+					</span>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Add an Event
+					</span>
+          <div class="latlong">Longitude and Latitude are required inputs to Add an Event. To find the latitude and longitude of your
+             Event please click here:  <a class="latlong-link" href = "https://www.latlong.net/convert-address-to-lat-long.html" target="_blank">
+              Convert your Address</a></div>
+         
+                    <div class="wrap-input100 ">
+                            <input class="input100" type="text" name="name" placeholder="Organization Name"  ng-model="newListing.evHost">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+
+					<div class="wrap-input100 " >
+						<input class="input100" type="text" name="event_name" placeholder="Event Name"  ng-model="newListing.evName">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+                    
+                    <div class="wrap-input100 " >
+                            <input class="input100" type="text" name="food" placeholder="Food Provided"  ng-model="newListing.evFood">
+                            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+
+					<div class="wrap-input100" >
+						<input class="input100" type="text" name="address" placeholder="Address"  ng-model="newListing.evAddress">
+						<span class="focus-input100" data-placeholder="&#xf299;"></span>
+                    </div>
+
+                    <div class="wrap-input100">
+                      <input class="input100" type="number" step="any" name="latitude" placeholder="Latitude of Event" ng-model="newListing.coordinates.latitude">
+                      <span class="focus-input100" data-placeholder="&#xf299;"></span>
+                     </div>
+
+                     <div class="wrap-input100">
+                                <input class="input100" type="number" step="any" name="longitude" placeholder="Longitude of Event" ng-model="newListing.coordinates.longitude">
+                                <span class="focus-input100" data-placeholder="&#xf299;"></span>
+                        </div>
+
+                     <div class="wrap-input100">
+                      <input class="input100" type="text" name="description" placeholder="Description of Event (ie. Room, Time, etc)" ng-model="newListing.evDescription">
+                      <span class="focus-input100" data-placeholder="&#xf223;"></span>
+              </div>
+                        
+                   <div id="create-btn" class="container-login100-form-btn">
+                    <a href="mapview.html"><button class="login100-form-btn" ng-click="addListingAndGoToMap()" onclick="location.href='mapview.html'">
+								Add Event
+							</button></a>
+                        </div>
+
+                        
+                        
+                </form>
+            </div>
+        </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="js/app.js"></script>
+<script src="js/factories/listingFactory.js"></script>
+<script src="js/controllers/listingController.js"></script>
+</body>
+</html>

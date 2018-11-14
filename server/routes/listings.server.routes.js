@@ -11,6 +11,9 @@ router.route('/')
   .get(listings.list)
   .post(listings.create);
 
+  // moved this up here so whatever sees this before /:listingId
+router.route('/mapview')
+  .get(listings.mapInfo);
 
 /*
   The ':' specifies a URL parameter. 
@@ -19,6 +22,9 @@ router.route('/:listingId')
   .get(listings.read)
   .put(listings.update)
   .delete(listings.delete);
+
+router.route('/mapview/:foodtype')
+  .get(listings.mapByFoodType);
 
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle 

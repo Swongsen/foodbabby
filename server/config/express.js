@@ -27,6 +27,12 @@ module.exports.init = function() {
   //Tutorial also explains virtual path prefixes
   app.use('/api/listings', listingsRouter);
 
+  // allow CORS
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
   /// Go to homepage for all routes not specified
   //Since we specified routes with app.use and Express is sequential in resolution

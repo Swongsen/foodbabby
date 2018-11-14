@@ -50,7 +50,7 @@ exports.update = function(req, res) {
   if(req.results)
   {
     listing.coordinates.latitude = req.results.lat;
-    listingscoordinates.longitude = req.results.lng;
+    listings.coordinates.longitude = req.results.lng;
   }
 
   //Use save to update our listing with the new data
@@ -103,6 +103,84 @@ exports.list = function(req, res) {
     }
   })
 };
+
+exports.mapInfo = function(req, res) {
+  // same as exports.list above
+  Listing.find({}).exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var features = listings.map( function(listing) {
+        return {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Host:</strong> " + listing.evHost 
+                          + "<br><strong>Name:</strong> " + listing.evName
+                          + "</br><strong>Description:</strong> " + listing.evDescription 
+                          + "<br><strong>Address:</strong> " + listing.evAddress 
+                          + "</br><strong>Food:</strong> " + listing.evFood,
+                        "icon": "star",
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
+                    }
+        }
+      });
+      res.json(features);
+    }
+  });
+};
+
+exports.getCoordinates = function(req, res) {
+  Listing.find({})/*.sort({code: 1})*/.exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var coords = listings.map( function(listing) {
+        return {
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
+                    }
+        }
+      });
+      res.json(coords);
+    }
+  });
+};
+
+exports.mapByFoodType = function(req, res) {
+  Listing.find({}).exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var features = listings.filter( 
+        listing => listing.evFood === req ).map( function(listing) {
+        return {
+                    "type": "Feature",
+                    "properties": {
+                        "description": listing.evName,
+                        "icon": "star",
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
+                    }
+        }
+      });
+      res.json(features);
+    }
+  });
+};
+
+// TODO mapInfo the same as list but with map stuff
 
 /* 
   Middleware: find a listing by its ID, then pass it to the next request handler. 

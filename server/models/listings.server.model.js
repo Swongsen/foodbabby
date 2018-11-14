@@ -13,15 +13,16 @@ var listingSchema = new Schema({
     required: true
   }, 
   evLocation: String, 
-    coordinates: {
+  coordinates: {
       latitude: Number, 
-      longitude: Number
+      longitude: Number,
   },
   evAddress: String,
   evDate: Date,
   evFood: String,
   evBldRm: String,
-  evDirections: String
+  evDirections: String,
+  evDescription: String,
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
