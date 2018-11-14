@@ -77,7 +77,7 @@ exports.delete = function(req, res) {
   var listing = req.listing;
 
   //We only need to use remove here
-  Listing.findOneAndRemove({name: listing.evName}, function(err){
+  Listing.findOneAndRemove({evName: listing.evName}, function(err){
     if(err)
     {
       res.status(400).send(err);
