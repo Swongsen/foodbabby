@@ -22,7 +22,12 @@ exports.create = function(req, res) {
     });
 };
 
-// exports.find = function(req,res) {
-//     Login.findOne({})
-// }
+exports.find = function(req,res) {
+    Login.findOne({Name: "", Password: ""}).exec(function(err, account){
+        if(err)
+            return res.status(400).send(err);
+        else
+            return res.json(account);
+    })
+};
     
