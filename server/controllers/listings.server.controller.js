@@ -30,7 +30,6 @@ exports.read = function(req, res) {
 /* Update a listing */
 exports.update = function(req, res) {
   var listing = req.listing;
-
   //First lets update the timestamp
   listing.updated_at = new Date();
   //Now for the rest using req.body
