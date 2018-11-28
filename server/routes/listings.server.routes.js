@@ -9,13 +9,16 @@ var listings = require('../controllers/listings.server.controller.js'),
   Take note that it is possible for different controller functions to handle requests to the same route.
  */
 router.route('/')
-  .get(listings.list)
-  .post(listings.create);
+  .get(accounts.find)
+  .post(accounts.create);
 
   // moved this up here so whatever sees this before /:listingId
 router.route('/mapview')
   .get(listings.mapInfo);
 
+router.route("/add-event")
+  .get(listings.list)
+  .post(listings.create);
 /*
   The ':' specifies a URL parameter. 
  */
