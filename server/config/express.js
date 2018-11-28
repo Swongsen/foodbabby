@@ -36,6 +36,7 @@ module.exports.init = function() {
     next();
   });
 
+  app.use
   /// Go to homepage for all routes not specified
   //Since we specified routes with app.use and Express is sequential in resolution
   //We now need a case for all other situations
