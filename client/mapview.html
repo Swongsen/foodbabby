@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>UF Food Baby</title>
+    <title>Display a popup on click</title>
+    <title>Display map navigation controls</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:15%; bottom:5%; width:100%; }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/fastfood.png"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/toolbar-style.css">
+    <!--===============================================================================================-->
+  </head>
+
+  <body ng-app="directoryApp">
+        <div id="navbar-id" >
+                    <ul>
+                        <li><a id="logout" href="index.html">Log Out</a></li>
+                        <li><a id="view-cal" href="mapview.html">View Events Map</a></li>
+                        <li><a id="all-events" href="list-view.html">View All Events</a></li>
+                        <li><a id="all-events" href="add-event.html">Add Event</a></li>
+                      </ul>
+          </div>
+          <style>
+            .mapboxgl-popup {
+                max-width: 400px;
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            }
+        </style>
+    <div id='map' ng-controller="ListingsController">
+        <!--
+        <div class="col-md-6">
+                <div class="input-group" id="searchBar">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                    <input type="text" class="form-control" placeholder="Search" ng-model="query">
+                </div>
+                <button class="btn btn-primary" ng-click="filterByFoodTypeForMap()">Search</button>
+        </div> -->
+    </div>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FoYXllczk3IiwiYSI6ImNqbmtxMnp6cjFjd2Iza216N2hheGQ2d3gifQ.OPg8xYxWdHMmKojW2ptbnQ';
+      var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v9',
+          center: [-82.3485788, 29.6499357],
+          zoom: 15.15
+      });
+      //Stars
+      map.on('load', function () {
+        // scope() gives the controller from map
+        // how dynamic is this? find more angular-friendyl way to do
+        // Add a layer showing the places.
+          map.addLayer({
+              "id": "places",
+              "type": "symbol",
+              "source": {
+                  "type": "geojson",
+                  "data": {
+                      "type": "FeatureCollection",
+                      "features": angular.element(document.getElementById('map')).scope().mapInfo,
+                  }	
+              },
+              "layout": {
+                  "icon-image": "{icon}-15",
+                  "icon-allow-overlap": true,
+            "icon-size": 1.5
+              }
+          });
+        
+          // When a click event occurs on a feature in the places layer, open a popup at the
+          // location of the feature, with description HTML from its properties.
+          map.on('click', 'places', function (e) {
+              var coordinates = e.features[0].geometry.coordinates.slice();
+              var description = e.features[0].properties.description;
+              // Ensure that if the map is zoomed out such that multiple
+              // copies of the feature are visible, the popup appears
+              // over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
+              new mapboxgl.Popup()
+                  .setLngLat(coordinates)
+                  .setHTML(description)
+                  .addTo(map);
+          });
+          // Change the cursor to a pointer when the mouse is over the places layer.
+          map.on('mouseenter', 'places', function () {
+              map.getCanvas().style.cursor = 'pointer';
+          });
+          // Change it back to a pointer when it leaves.
+          map.on('mouseleave', 'places', function () {
+              map.getCanvas().style.cursor = '';
+          });
+      });
+      // Add zoom and rotation controls to the map.
+      map.addControl(new mapboxgl.NavigationControl());
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/factories/listingFactory.js"></script>
+    <script src="js/controllers/listingController.js"></script>
+  </body>
+</html>

@@ -41,16 +41,21 @@ exports.update = function(req, res) {
   var listing = req.listing;
 
   //First lets update the timestamp
-  listing.updated_at = new Date();
+  listing.evUpdatedAt = new Date();
   //Now for the rest using req.body
-  listing.code = req.body.code;
-  listing.name = req.body.name;
-  listing.address = req.body.address;
+  listing.evName = req.body.name;
+  listing.evHost = req.body.host;
+  listing.evAddress = req.body.address;
+  listing.evDate = req.body.Date;
+  listing.evFood = req.body.food;
+  listing.evBldRm = req.body.bldRm;
+  listing.evDirections = req.body.directions;
+
   //FIXED - "updating coordinates" piazza post helped me here!
   if(req.results)
   {
-    listing.coordinates.latitude = req.results.lat;
-    listingscoordinates.longitude = req.results.lng;
+    listing.evLocation.latitude = req.results.lat;
+    listing.evLocation.longitude = req.results.lng;
   }
 
   //Use save to update our listing with the new data
@@ -72,7 +77,7 @@ exports.delete = function(req, res) {
   var listing = req.listing;
 
   //We only need to use remove here
-  Listing.findOneAndRemove({name: listing.name}, {code: listing.code}, function(err){
+  Listing.findOneAndRemove({evName: listing.evName}, function(err){
     if(err)
     {
       res.status(400).send(err);
@@ -86,7 +91,6 @@ exports.delete = function(req, res) {
     });
 
 };
-
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
 
@@ -103,6 +107,84 @@ exports.list = function(req, res) {
     }
   })
 };
+
+exports.mapInfo = function(req, res) {
+  // same as exports.list above
+  Listing.find({}).exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var features = listings.map( function(listing) {
+        return {
+                    "type": "Feature",
+                    "properties": {
+                        "description": "<strong>Host:</strong> " + listing.evHost 
+                          + "<br><strong>Name:</strong> " + listing.evName
+                          + "</br><strong>Description:</strong> " + listing.evDescription 
+                          + "<br><strong>Address:</strong> " + listing.evAddress 
+                          + "</br><strong>Food:</strong> " + listing.evFood,
+                        "icon": "star",
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
+                    }
+        }
+      });
+      res.json(features);
+    }
+  });
+};
+
+exports.getCoordinates = function(req, res) {
+  Listing.find({})/*.sort({code: 1})*/.exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var coords = listings.map( function(listing) {
+        return {
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
+                    }
+        }
+      });
+      res.json(coords);
+    }
+  });
+};
+
+exports.mapByFoodType = function(req, res) {
+  Listing.find({}).exec(function(err, listings){
+    if(err){
+      console.log(err);
+      res.status(400).send(err);
+    }
+    else{
+      var features = listings.filter( 
+        listing => listing.evFood === req ).map( function(listing) {
+        return {
+                    "type": "Feature",
+                    "properties": {
+                        "description": listing.evName,
+                        "icon": "star",
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [listing.coordinates.longitude, listing.coordinates.latitude],
+                    }
+        }
+      });
+      res.json(features);
+    }
+  });
+};
+
+// TODO mapInfo the same as list but with map stuff
 
 /* 
   Middleware: find a listing by its ID, then pass it to the next request handler. 
