@@ -17,7 +17,7 @@ exports.create = function(req, res) {
             res.status(400).send(err);
         } 
         else {
-            res.json(listing);
+            res.json(account);
         }
     });
 };
@@ -43,5 +43,23 @@ exports.list = function(req, res) {
         res.json(login);
       }
     })
+  };
+
+  /* 
+  Middleware: find a listing by its ID, then pass it to the next request handler. 
+
+  Find the listing using a mongoose query, 
+        bind it to the request object as the property 'listing', 
+        then finally call next
+ */
+exports.loginByID = function(req, res, next, id) {
+    Login.findById(id).exec(function(err, login) {
+      if(err) {
+        res.status(400).send(err);
+      } else {
+        req.login = login;
+        next();
+      }
+    });
   };
     
