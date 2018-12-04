@@ -1,6 +1,6 @@
 /* Dependencies */
 var listings = require('../controllers/listings.server.controller.js'), 
-    //accounts = require('../controllers/login.server.controller.js'),
+    accounts = require('../controllers/login.server.controller.js'),
     express = require('express'), 
     router = express.Router();
 
@@ -30,6 +30,9 @@ router.route('/:listingId')
 router.route('/mapview/:foodtype')
   .get(listings.mapByFoodType);
 
+// router.route('/index/')
+//   .get(accounts.findAcc)
+//   .post(accounts.createAcc);
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle 
   requests with a parameter.

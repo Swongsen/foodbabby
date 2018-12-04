@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'), 
     Login = require('../models/login.server.model.js');
 
-exports.create = function(req, res) {
+exports.createAcc = function(req, res) {
 
     /* Instantiate a Listing */
     var account = new Login(req.body);
@@ -17,12 +17,12 @@ exports.create = function(req, res) {
             res.status(400).send(err);
         } 
         else {
-            res.json(listing);
+            res.json(account);
         }
     });
 };
 
-exports.find = function(req,res) {
+exports.findAcc = function(req,res) {
     Login.findOne({Name: "", Password: ""}).exec(function(err, account){
         if(err)
             return res.status(400).send(err);

@@ -5,6 +5,7 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     config = require('./config'),
     listingsRouter = require('../routes/listings.server.routes');
+   //accountsRouter = require('../routes/login.server.routes');
 
 module.exports.init = function() {
   //connect to database
@@ -28,6 +29,7 @@ module.exports.init = function() {
   //Use the listings router for requests to the api 
   //Tutorial also explains virtual path prefixes
   app.use('/api/listings', listingsRouter);
+  //app.use('/api/login'. accountsRouter);
 
   // allow CORS
   app.use(function(req, res, next) {
@@ -36,7 +38,6 @@ module.exports.init = function() {
     next();
   });
 
-  app.use
   /// Go to homepage for all routes not specified
   //Since we specified routes with app.use and Express is sequential in resolution
   //We now need a case for all other situations
