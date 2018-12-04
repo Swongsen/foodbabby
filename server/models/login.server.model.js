@@ -23,6 +23,29 @@ var loginSchema = new Schema({
 
 });
 
+// Authenticate input with database
+Login.statistics.authenticate = function (username, password, callback){
+  Login.findOne({username: username})
+    .exec(function (err, user) {
+      if(err){
+        return callback(err);
+      }
+      else if(!Login){
+        var err = new Error('User not found.');
+        err.status = 4001
+        return callback(err);
+      }
+      bcrypt.compare(password, Login.password, function(err, result){
+        if (result === true){
+          return callback(null, Login);
+        }
+        else{
+          return callback();
+        }
+      })
+    });
+}
+
 // Hashing a password before saving it to the db, maybe have in login.server.controller?
 loginSchema.pre('save', function (next){
     var user = this;
