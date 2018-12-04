@@ -1,5 +1,6 @@
 /* Dependencies */
 var listings = require('../controllers/listings.server.controller.js'), 
+    login = require('../controllers/login.server.controller.js'),
     express = require('express'), 
     router = express.Router();
 
@@ -10,6 +11,13 @@ var listings = require('../controllers/listings.server.controller.js'),
 router.route('/')
   .get(listings.list)
   .post(listings.create);
+
+router.route('/login')
+  .get(login.list)
+  .post(login.create);
+
+router.route('/login/:loginId')
+  .get(login.find);
 
   // moved this up here so whatever sees this before /:listingId
 router.route('/mapview')

@@ -14,10 +14,22 @@ angular.module('listings', []).factory('Listings', function($http) {
 
     getAllForMap: function() {
       return $http.get('https://powerful-beach-46688.herokuapp.com/api/listings/mapview');
-    },
+    }
+  };
 
-    getByFoodTypeForMap: function(foodtype) {
-      return $http.get('https://powerful-beach-46688.herokuapp.com/api/listings/mapview/' + foodtype);
+  return methods;
+});
+
+angular.module('listings', []).factory('Login', function($http) {
+  var methods = {
+    getAllAccounts: function() {
+      return $http.get('https://powerful-beach-46688.herokuapp.com/api/listings/login');
+    },
+    findById: function(id) {
+      return $http.get('https://powerful-beach-46688.herokuapp.com/api/listings/login' + id);
+    },
+	  createAccount: function(login) {
+      return $http.post('https://powerful-beach-46688.herokuapp.com/api/listings/login', login);
     }
   };
 
