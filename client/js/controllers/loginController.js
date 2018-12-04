@@ -1,8 +1,8 @@
-angular.module('login').controller('LoginController', ['$scope', '$location', 'Login',
+angular.module('listings').controller('LoginController', ['$scope', '$location', 'Login',
   function($scope, $location, Login) {
     /* Get all the listings, then bind it to the scope */
     Login.getAll().then(function(response) {
-      $scope.login = response.data;
+      $scope.accounts = response.data;
 
     }, function(error) {
       console.log('Unable to retrieve account:', error);
