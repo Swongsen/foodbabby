@@ -4,7 +4,7 @@
 	<title>UF Food Baby</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/fastfood.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -14,23 +14,24 @@
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body ng-app="directoryApp">
-	
+
+<body>
+
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');" ng-controller="LoginController">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
 					<span class="login100-form-logo">
@@ -40,15 +41,19 @@
 							FOOD BABY
 						</span>
 
+
+				<form action="/" method="post">
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username" ng-model="register.Name">
+						<input class="input100" type="text" name="logusername" placeholder="Username" required="">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password" ng-model="register.Password">
+						<input class="input100" type="logpassword" name="pass" placeholder="Password" required="">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
+
+				</form>
 
 					<div class="contact100-form-checkbox">
 						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
@@ -57,36 +62,67 @@
 						</label>
 					</div>
 
-					<div id="login-btn" class="container-login100-form-btn">
-						<button class="login100-form-btn" ng-click="signIn()">
+				<a href="mapview.html"><div id="login-btn" class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							Login
 						</button>
-					</div>
+					</div></a>
 				</form>
+
+
+
 				<a href="mapview.html">	<div id="guest-btn"  class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Continue As Guest
 						</button>
 					</div></a>
-				
+
 					<a href="create-account.html"><div id="create-btn" class="container-login100-form-btn">
-							<button class="login100-form-btn" ng-click="createAccount()">
+							<button class="login100-form-btn">
 								Create Account
 							</button>
 						</div></a>
-					
+
 					<div class="text-center p-t-20">
 						<a class="txt1" href="#">
 							Forgot Password?
 						</a>
 					</div>
+
+					<html lang="en">
+		<head>
+			<meta name="google-signin-scope" content="profile email">
+			<meta name="google-signin-client_id" content="473441966692-7bd8s7e4e5v4q4rsov1n67s5lh1aikmm.apps.googleusercontent.com">
+			<script src="https://apis.google.com/js/platform.js" async defer></script>
+		</head>
+		<body>
+			<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+			<script>
+				function onSignIn(googleUser) {
+					// Useful data for your client-side scripts:
+					var profile = googleUser.getBasicProfile();
+					console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+					console.log('Full Name: ' + profile.getName());
+					console.log('Given Name: ' + profile.getGivenName());
+					console.log('Family Name: ' + profile.getFamilyName());
+					console.log("Image URL: " + profile.getImageUrl());
+					console.log("Email: " + profile.getEmail());
+
+					// The ID token you need to pass to your backend:
+					var id_token = googleUser.getAuthResponse().id_token;
+					console.log("ID Token: " + id_token);
+				};
+			</script>
+		</body>
+	</html>
+
 				</div>
 			</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
+
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -107,8 +143,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/factories/loginFactory.js"></script>
-    <script src="js/controllers/loginController.js"></script>
+    <script src="js/factories/listingFactory.js"></script>
+    <script src="js/controllers/listingController.js"></script>
 
 </body>
 </html>

@@ -54,4 +54,10 @@ li a:hover {
   background: -moz-linear-gradient(bottom, #0d15e9, #e66d1d);
   background: linear-gradient(bottom, #0d15e9, #e66d1d);
 }
+.event-list:hover {
+ color: yellow;
+}
+.event-list {
+  color: white;
+}
 

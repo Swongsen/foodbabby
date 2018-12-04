@@ -4,15 +4,11 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    listingsRouter = require('../routes/listings.server.routes'),
-    loginRouter = require('../routes/login.server.routes');
-
+    listingsRouter = require('../routes/listings.server.routes');
 
 module.exports.init = function() {
   //connect to database
-  mongoose.connect(config.db.uri, {
-    useMongoClient: true,
-  });
+  mongoose.connect(config.db.uri);
 
   //initialize app
   var app = express();
@@ -30,8 +26,6 @@ module.exports.init = function() {
   //Use the listings router for requests to the api 
   //Tutorial also explains virtual path prefixes
   app.use('/api/listings', listingsRouter);
-
-  app.use('/api/login', loginRouter);
 
   // allow CORS
   app.use(function(req, res, next) {

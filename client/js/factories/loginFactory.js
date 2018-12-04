@@ -1,15 +1,13 @@
-angular.module('listings').factory('LoginFactory', function($http) {
-    var methods = {
-      getAllAccounts: function() {
-        return $http.get('/api/login');
-      },
-      findById: function(id) {
-        return $http.get('/api/login/' + id);
-      },
-      createAccount: function(login) {
-        return $http.post('/api/login', login);
-      }
-    };
-  
-    return methods;
-  });
+angular.module('users', []).factory('Users', function($http) {
+  var methods = {
+	  create: function(user) {
+	    return $http.post(window.location.origin + '/api/users', user);
+    },
+
+    delete: function(id) {
+      return $http.delete(window.location.origin + '/api/users/' + id);
+    }
+  };
+
+  return methods;
+});

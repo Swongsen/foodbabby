@@ -81,14 +81,14 @@
                         </div>
 
                      <div class="wrap-input100">
-                      <input class="input100" type="text" name="description" placeholder="Description of Event" ng-model="newListing.evDescription">
+                      <input class="input100" type="text" name="description" placeholder="Description of Event (ie. Room, Time, etc)" ng-model="newListing.evDescription">
                       <span class="focus-input100" data-placeholder="&#xf223;"></span>
               </div>
                         
-                    <div id="create-btn" class="container-login100-form-btn">
-							<button class="login100-form-btn" ng-click="addListingAndGoToMap()" href="mapview.html">
+                   <div id="create-btn" class="container-login100-form-btn">
+                    <a href="mapview.html"><button class="login100-form-btn" ng-click="addListingAndGoToMap()" onclick="location.href='mapview.html'">
 								Add Event
-							</button>
+							</button></a>
                         </div>
 
                         

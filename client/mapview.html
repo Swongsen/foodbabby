@@ -40,20 +40,20 @@
   </head>
 
   <body ng-app="directoryApp">
-        <div>
-                <ul id="navbar-id">
+        <div id="navbar-id" >
+                    <ul>
                         <li><a id="logout" href="index.html">Log Out</a></li>
                         <li><a id="view-cal" href="mapview.html">View Events Map</a></li>
                         <li><a id="all-events" href="list-view.html">View All Events</a></li>
                         <li><a id="all-events" href="add-event.html">Add Event</a></li>
                       </ul>
           </div>
-    <style>
-        .mapboxgl-popup {
-            max-width: 400px;
-            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        }
-    </style>
+          <style>
+            .mapboxgl-popup {
+                max-width: 400px;
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            }
+        </style>
     <div id='map' ng-controller="ListingsController">
         <!--
         <div class="col-md-6">

@@ -1,33 +1,80 @@
 /* Dependencies */
-var login = require('../controllers/login.server.controller.js'),
-    express = require('express'), 
+var express = require('express'),
     router = express.Router();
 
-/* 
-  These method calls are responsible for routing requests to the correct request handler.
-  Take note that it is possible for different controller functions to handle requests to the same route.
- */
+var Login = require('../models/login.server.model');
 
-router.route('/')
-  .get(login.list)
-  .post(login.create);
+// Get Route to read data
+router.get('/', function(req, res, next){
+  return res.sendFile(path.join(__dirname + '/templateLogReg/index.html'));
+});
 
-router.route('/:loginId')
-  .get(login.find);
+// Post route for updating data. Submits data to be processed
+router.post('/', function(req, res, next){
+  if(req.name &&req.body.username && req.body.password){
 
-/*
-  The 'router.param' method allows us to specify middleware we would like to use to handle 
-  requests with a parameter.
+    var userData = {
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password
+    }
 
-  Say we make an example request to '/listings/566372f4d11de3498e2941c9'
 
-  The request handler will first find the specific listing using this 'listingsById' 
-  middleware function by doing a lookup to ID '566372f4d11de3498e2941c9' in the Mongo database, 
-  and bind this listing to the request object.
+    login.create(userData, function(err, user){
+      if(err)
+        return res.status(400).send(err);
+        else{
+          req.session.userId = Login._id;
+          // want to redirect to /profile
+          return res.redirect('/');
+        }
+      }
+    });
+  }
+  else if(req.body.logusername && req.body.logpassword){
+    Login.authenticate(req.body.logusername, req.body.logpassword, function(err, login){
+      if(error || !login){
+        var err = new Error('Something went wrong.');
+        err.status = 401;
+        return next(err);
+      }
+      else{
+        req.session.userId = Login._id;
+        return res.redirect('/')
+      }
+    });
+  }
+  else{
+    var err = new Error('Something went wrong with your fields');
+    err.status = 400;
+    return next(err);
+  }
 
-  It will then pass control to the routing function specified above, where it will either 
-  get, update, or delete that specific listing (depending on the HTTP verb specified)
- */
-router.param('loginId', login.loginByID);
+});
+
+router.post('/login', function(req, res, next){
+  return res.send('POST login');
+});
+
+// Get Route after registering (Make /login our homepage) or else change to ('') instead?
+router.get('/login', function (req, res, next){
+  return res.send('get login');
+})
+
+
+// Get route for logging out
+router.get('/logout', function(req, res, next){
+  if(req.session){
+    req.session.destroy(function (err){
+      if(err){
+        return next(err);
+      }
+      else{
+        // redirect to /login if possible
+        return res.redirect('/');
+      }
+    });
+  }
+});
 
 module.exports = router;

@@ -41,16 +41,21 @@ exports.update = function(req, res) {
   var listing = req.listing;
 
   //First lets update the timestamp
-  listing.updated_at = new Date();
+  listing.evUpdatedAt = new Date();
   //Now for the rest using req.body
-  listing.code = req.body.code;
-  listing.name = req.body.name;
-  listing.address = req.body.address;
+  listing.evName = req.body.name;
+  listing.evHost = req.body.host;
+  listing.evAddress = req.body.address;
+  listing.evDate = req.body.Date;
+  listing.evFood = req.body.food;
+  listing.evBldRm = req.body.bldRm;
+  listing.evDirections = req.body.directions;
+
   //FIXED - "updating coordinates" piazza post helped me here!
   if(req.results)
   {
-    listing.coordinates.latitude = req.results.lat;
-    listings.coordinates.longitude = req.results.lng;
+    listing.evLocation.latitude = req.results.lat;
+    listing.evLocation.longitude = req.results.lng;
   }
 
   //Use save to update our listing with the new data
@@ -72,7 +77,7 @@ exports.delete = function(req, res) {
   var listing = req.listing;
 
   //We only need to use remove here
-  Listing.findOneAndRemove({name: listing.name}, {code: listing.code}, function(err){
+  Listing.findOneAndRemove({evName: listing.evName}, function(err){
     if(err)
     {
       res.status(400).send(err);
@@ -86,7 +91,6 @@ exports.delete = function(req, res) {
     });
 
 };
-
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
 
