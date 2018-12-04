@@ -1,4 +1,4 @@
-
+const bcrypt = require('bcryptjs');
 const config = require('../config/config');
 
 var mongoose = require('mongoose'),
@@ -23,6 +23,18 @@ var loginSchema = new Schema({
 
 });
 
+// Hashing a password before saving it to the db, maybe have in login.server.controller?
+loginSchema.pre('save', function (next){
+    var user = this;
+    bcrypt.hash(Login.password, 10, function(err, hash){
+      if(err)
+        return res.status(400).send(err);
+
+      Login.password = hash;
+      next();
+
+    })
+});
 /* Use your schema to instantiate a Mongoose model */
 var Login = mongoose.model('Login', loginSchema);
 

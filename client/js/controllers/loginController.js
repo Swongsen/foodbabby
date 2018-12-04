@@ -5,7 +5,7 @@ angular.module('login').controller('LoginController', ['$scope', '$location', 'L
       $scope.login = response.data;
 
     }, function(error) {
-      console.log('Unable to retrieve listings:', error);
+      console.log('Unable to retrieve account:', error);
     });
 
     $scope.addAccount = function() {

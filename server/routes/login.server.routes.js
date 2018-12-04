@@ -1,36 +1,50 @@
 /* Dependencies */
-var listings = require('../controllers/login.server.controller.js'),
-    express = require('express'),
+var express = require('express'),
     router = express.Router();
 
-/*
-  These method calls are responsible for routing requests to the correct request handler.
-  Take note that it is possible for different controller functions to handle requests to the same route.
- */
-router.route('/')
-  .get(login.read)
-  .post(login.find);
+var Login = require('../models/login.server.model');
 
-  // moved this up here so whatever sees this before /:listingId
-router.route('/create-account')
-  .get(login.create);
-  .post(login.addUser);
+// Get Route to read data
+router.get('/', function(req, res, next){
+  return res.sendFile(path.join(__dirname + '/templateLogReg/index.html'));
+});
+
+// Get Route after registering (Make /login our homepage) or else change to ('') instead?
+router.get('/login', function (req, res, next){
+  return res.send('get login');
+})
+
+// Post route for updating data
+router.post('/', function(req, res, next){
+  if(req.name &&req.body.username && req.body.password){
+
+    var userData = {
+      name: req.body.name,
+      username: req.body.username,
+      password: req.body.password
+    }
 
 
+    login.create(userData, function(err, user){
+      if(err)
+        return res.status(400).send(err);
+        else{
+          return res.redirect('/');
+        }
+      }
+    });
+  }
+  else{
+    var err = new Error('Something went wrong');
+    err.status = 400;
+    return next(err);
+  }
 
-/*
-  The 'router.param' method allows us to specify middleware we would like to use to handle
-  requests with a parameter.
+});
 
-  Say we make an example request to '/listings/566372f4d11de3498e2941c9'
+router.post('/login', function(req, res, next){
+  return res.send('POST login');
+});
 
-  The request handler will first find the specific listing using this 'listingsById'
-  middleware function by doing a lookup to ID '566372f4d11de3498e2941c9' in the Mongo database,
-  and bind this listing to the request object.
-
-  It will then pass control to the routing function specified above, where it will either
-  get, update, or delete that specific listing (depending on the HTTP verb specified)
- */
-//router.param('listingId', listings.listingByID);
 
 module.exports = router;
