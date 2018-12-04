@@ -23,7 +23,10 @@ var listingSchema = new Schema({
   evBldRm: String,
   evDirections: String,
   evDescription: String,
-});
+  },
+  {
+    collection: 'listings'
+  });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
 listingSchema.pre('save', function(next) {

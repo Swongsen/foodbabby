@@ -14,7 +14,11 @@ var loginSchema = new Schema({
     type: Boolean
     }
   
-});
+  },
+  {
+    collection: 'logins'
+  }
+);
 
 /* Use your schema to instantiate a Mongoose model */
 var Login = mongoose.model('Login', loginSchema);

@@ -30,9 +30,9 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');" >
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" ng-controller="">
+				<form class="login100-form validate-form">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-local-dining"></i>
 					</span>
@@ -69,11 +69,13 @@
 						</button>
 					</div></a>
 				
-					<a href="create-account.html"><div id="create-btn" class="container-login100-form-btn">
+					<a href="create-account.html">
+						<div id="create-btn"  ng-click="createAccount()" class="container-login100-form-btn">
 							<button class="login100-form-btn">
 								Create Account
 							</button>
-						</div></a>
+						</div>
+					</a>
 					
 					<div class="text-center p-t-20">
 						<a class="txt1" href="#">
@@ -107,7 +109,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/factories/listingFactory.js"></script>
+    <script src="js/factories/loginFactory.js"></script>
     <script src="js/controllers/loginController.js"></script>
 
 </body>
