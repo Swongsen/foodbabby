@@ -1,10 +1,8 @@
-
 /* Dependencies */
 var mongoose = require('mongoose'), 
     Login = require('../models/login.server.model.js');
 
 exports.createAcc = function(req, res) {
-
     /* Instantiate a Listing */
     var account = new Login(req.body);
     

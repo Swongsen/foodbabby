@@ -12,13 +12,17 @@ router.route('/')
   .get(listings.list)
   .post(listings.create);
 
+
+router.route('/index/')
+  .get(accounts.findAcc)
+  .post(accounts.createAcc);
   // moved this up here so whatever sees this before /:listingId
 router.route('/mapview')
   .get(listings.mapInfo);
 
-// router.route("/add-event")
-//   .get(listings.list)
-//   .post(listings.create);
+router.route("/add-event")
+  .get(listings.list)
+  .post(listings.create);
 /*
   The ':' specifies a URL parameter. 
  */
@@ -30,9 +34,7 @@ router.route('/:listingId')
 router.route('/mapview/:foodtype')
   .get(listings.mapByFoodType);
 
-// router.route('/index/')
-//   .get(accounts.findAcc)
-//   .post(accounts.createAcc);
+
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle 
   requests with a parameter.

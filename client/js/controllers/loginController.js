@@ -1,6 +1,6 @@
-angular.module('login').controller('LoginController', ['$scope', '$location', 'Login', 
+angular.module('login').controller('LoginController', ['$scope', '$location', 'Accounts', 
     
-  function($scope, $location, Accounts)
+  function($scope, Accounts)
   {
      /* Get all the listings, then bind it to the scope */
      Accounts.getAll().then(function(response) 
@@ -24,8 +24,7 @@ angular.module('login').controller('LoginController', ['$scope', '$location', 'L
           {
             console.log('Account addition Failed. Error: ', error);
           })
-        }
-      },
+        };
      
       $scope.signIn = function() 
       {
@@ -42,4 +41,5 @@ angular.module('login').controller('LoginController', ['$scope', '$location', 'L
             console.log('No account with that information. Error: ', error);
           })
       }
+    }
 ]);

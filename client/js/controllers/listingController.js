@@ -25,10 +25,6 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
     $scope.detailedInfo = undefined;
 
     $scope.addListing = function() {
-	  /**TODO 
-	  *Save the article using the Listings factory. If the object is successfully 
-	  saved redirect back to the list page. Otherwise, display the error
-	 */
       Listings.create($scope.newListing).then(function(response)
       {
         Listings.getAll().then(function(response) 
@@ -43,10 +39,6 @@ angular.module('listings').controller('ListingsController', ['$scope', '$locatio
     };
 
     $scope.addListingAndGoToMap = function() {
-      /**TODO 
-      *Save the article using the Listings factory. If the object is successfully 
-      saved redirect back to the list page. Otherwise, display the error
-     */
         Listings.create($scope.newListing).then(function(response)
         {
           Listings.getAll().then(function(response) 
