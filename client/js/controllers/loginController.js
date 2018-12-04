@@ -1,4 +1,4 @@
-angular.module('listings').controller('LoginController', ['$scope', '$location', 'Login',
+angular.module('listings').controller('LoginController', ['$scope', '$location', 'Users',
   function($scope, $location, Login) {
     /* Get all the listings, then bind it to the scope */
     Login.getAll().then(function(response) {

@@ -1,4 +1,4 @@
-angular.module('users', []).factory('Users', function($http) {
+angular.module('listings', []).factory('Users', function($http) {
   var methods = {
 	  create: function(user) {
 	    return $http.post(window.location.origin + '/api/users', user);
