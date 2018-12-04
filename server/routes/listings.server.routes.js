@@ -12,7 +12,6 @@ router.route('/')
   .get(listings.list)
   .post(listings.create);
 
-
 router.route('/index/')
   .get(accounts.findAcc)
   .post(accounts.createAcc);

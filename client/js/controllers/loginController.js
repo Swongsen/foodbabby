@@ -44,7 +44,7 @@
 //     }
 // ]);
 
-angular.module('listings').controller('LoginController', ['$scope', '$location', 'Login', 
+angular.module('login').controller('LoginController', ['$scope', '$location', 'Login', 
     
     function($scope, Login) {
         console.log("loginController");
